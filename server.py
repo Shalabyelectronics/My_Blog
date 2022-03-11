@@ -27,7 +27,7 @@ for post in post_data:
 
 
 def send_email(func):
-    def warpper(content):
+    def wrapper(content):
         message_data = func(content)
         msg = EmailMessage()
         msg["Subject"] = "You Got New message💬"
@@ -40,11 +40,10 @@ def send_email(func):
                 connection.send_message(msg)
                 status = "Message sent"
         except Exception as r:
-            return f"We code note send the message because of error {r} "
+            return f"We could not send the message because of error {r} "
         else:
             return status
-
-    return warpper
+    return wrapper
 
 
 @send_email
